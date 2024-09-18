@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CensoWeb</title>
+    <script src="codigo/clases.js"></script>
+    <script src="codigo/sistema.js"></script>
+    <script src="codigo/codigo.js"></script>
+    <link rel="stylesheet" href="estilo/estilo.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="contenedor">
+        <div id="cabezal" class="clearfix">
+            <img id="logo" src="logo.jpg" alt="logo">
+            <ul id="navPrincipal">
+                <li id="btnSeccionRegistro" class="btnSeccion censista " style="display: none;">
+                    <a>Registro</a>
+                </li>
+                <li id="btnSeccionLogin" class="btnSeccion invitado " style="display: block;">
+                    <a>Ingresar al sistema</a>
+                </li>
+                <li id="btnSeccionListar" class="btnSeccion invitado" style="display: block;">
+                    <a>Listar</a>
+                </li>
+                <li id="btnseccionListaCensos" class="btnSeccion invitado" style="display: block;">
+                    <a>Lista censos</a>
+                </li>
+                <li id="btnSeccionEstadistica" class="btnSeccion censista" style="display: none;">
+                    <a>Estadisticas</a>
+                </li>
+                <li id="btnSeccionCensarPersona" class="btnSeccion censista invitado" style="display: none;">
+                    <a>Censo</a>
+                </li>
+                <li id="btnSeccionEliminarCenso" class="btnSeccion invitado" style="display: none;">
+                    <a>Eliminar censo</a>
+                </li>
+                <li id="btnSeccionReasignarCensista" class="btnSeccion censista" style="display: none;">
+                    <a>Reasignar censista</a>
+                </li>
+                <li id="btnSeccionConsultarCensoPreCompletado" class="btnSeccion censista" style="display: none;">
+                    <a>Consultar censo</a>
+                </li>
+                <!--NUEVO -->
+                <li id="menuSalir" class="btnSeccion censista" style="display: none;">
+                    <a>Salir</a>
+                </li>
+            </ul>
+            <!--NUEVO -->
+            <div id="aux">
+                <p id="nombreUsuarioLogeado"></p>
+            </div><!-- FIN AUX -->
+        </div><!-- FIN CABEZAL -->
+        <div id="contenido">
+            <div>
+                <!--NUEVO -->
+                <!--IMAGEN -->
+            </div>
+            <div id="seccionEliminarCenso" class="seccion" style="display: none;">
+                <h3>Eliminar sus datos para el censo</h3>
+                <br> <br>
+                <input type="text" id="txtCedulaParaEliminar" placeholder="Ingrese su cedula">
+                <br> <br>
+                <input type="button" id="btnEliminarCenso" value="Eliminar" class="btnSeccion invitado ">
+                <br> <br>
+                <p id="mensajeDeAviso"></p>
+            </div>
+            <div id="seccionCensarPersona" class="seccion" style="display: none;">
+                <input type="text" id="txtCedula" placeholder="Ingrese cédula" required>
+                <br> <br>
+                <input type="button" id="btnBuscarCedula" value="Buscar cédula" class="btnSeccion invitado ">
+                <br>
+                <input type="text" id="txtNomUs" placeholder="Ingrese nombre">
+                <br> <br>
+                <input type="text" id="txtApeUs" placeholder="Ingrese apellido">
+                <br> <br>
+                <input type="number" id="txtEdad" placeholder="Ingrese edad">
+                <br> <br>
+                <label for="slcDepRes">Departamento de residencia </label>
+                <select id="slcDepRes">
+                </select>
+                <br> <br>
+                <label for="slcOcupacion">Ocupación </label>
+                <select id="slcOcupacion">
+                </select>
+                <br> <br>
+                <input type="button" id="btnCensar" value="Censar">
+                <br><br>
+                <p id="mensajeDeRegistro"></p>
+            </div>
+            <div id="seccionReasignarCensista" class="seccion" style="display: none;">
+                <h3>Reasignar persona para validar</h3>
+                <label for="txtPendienteValidar">Pendientes a validar </label>
+                <select id="txtPendienteValidar">
+                </select>
+                <br> <br>
+                <label for="txtCensistasValidadores">Censistas </label>
+                <select id="txtCensistasValidadores">
+                </select>
+                <br> <br>
+                <input type="button" id="btnTransferirAsignacion" value="Transferir asiganción">
+            </div>
+            <div id="seccionConsultarCensoPreCompletado" class="seccion" style="display: none;">
+                <h3>Consultar censo pre completado por validar</h3>
+                <input type="text" id="txtCI" placeholder="Ingrese cédula"><br>
+                <br> <br>
+                <input type="button" id="btnConsultarCenso" value="Consultar">
+                <br> <br>
+                <p id="txtMensajePreCensado"></p>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                            <th>Cédula</th>
+                            <th>Departamento</th>
+                            <th>Ocupación</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblPreCensados"> </tbody>
+                </table>
+                <br> <br>
+                <input type="button" id="btnValidar" value="Validar" class="validar" style="display: none;">
+            </div>
+
+            <div id="seccionRegistro" class="seccion" style="display: none;">
+                <h3>Registro</h3>
+                <input type="text" id="txtNombre" placeholder="Ingrese nombre"><br>
+                <input type="text" id="txtNombreUs" placeholder="Ingrese nombre de usario"><br>
+                <input type="password" id="txtClave" placeholder="Ingrese clave"><br><br>
+                <input type="button" id="btnIngresarUsuario" value="Registarse"><br>
+                <p id="mensajeRegistro"></p>
+            </div>
+
+            <div id="seccionLogin" class="seccion" style="display: none;">
+                <h3>Login</h3>
+                <input type="text" id="txtNombreUsuarioLogin" placeholder="Ingrese nombre de usuario"><br>
+                <input type="password" id="txtPassLogin" placeholder="Ingrese clave"><br><br>
+                <input type="button" id="btnIngresoAlSistema" value="Iniciar sesion"><br>
+                <p id="mensajeLogin"></p>
+
+            </div>
+
+            <div id="seccionEstadistica" class="seccion" style="display: none;">
+                <h3>Estadisticas</h3>
+                <label for="slcElegirDep">Total de personas censadas por departamento</label>
+                <select id="slcElegirDep">
+                </select>
+                <input type="button" id="btnCensistasPorDepartamento" value="Pendientes por validar">
+                <input type="button" id="btnTotalPersonasCensadas" value="Total de personas censadas">
+                <br> <br>
+                <input type="button" id="btnPendientesDeValidacion" value="Pendientes por validar">
+                <p id="pTotalCensadoss"></p>
+            </div>
+
+            <!--Lista de censados.-->
+            <div id="seccionListar" class="seccion" style="display: block;">
+                <h3>Lista de censados</h3>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Departamento</th>
+                            <th>Estudian</th>
+                            <th>No trabajan</th>
+                            <th>Dependientes o independientes</th>
+                            <th>Porcentaje del total de censados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblListaCensados"> </tbody>
+                </table>
+            </div>
+
+            <div id="seccionListaCensos" class="seccion" style="display: block;">
+                <h3>Lista censos</h3>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Departamento</th>
+                            <th>Nombre</th>
+                            <th>Cedula</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblCensos"> </tbody>
+                </table>
+            </div>
+
+
+        </div><!-- FIN CONTENIDO -->
+        <div id="pie">
+            <a href="https://www.ort.edu.uy/">ORT</a>
+        </div><!-- FIN PIE -->
+    </div><!-- FIN CONTENEDOR -->
+</body>
+
+</html>
